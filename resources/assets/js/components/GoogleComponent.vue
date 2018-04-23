@@ -2,7 +2,7 @@
  <div>
   <gmap-map class="google-map"
     :center="center"
-    :zoom="12"
+    :zoom="inzoom"
     >
     <gmap-marker
       :key="index"
@@ -10,6 +10,7 @@
       :position="m.position"
       :clickable="true"
       :draggable="false"
+      :icon="iconM"
       @click="showAlert(m, index)"
       ></gmap-marker>
 
@@ -21,10 +22,15 @@
 </template>
 
 <script>
-	
+
+ import MyImage from '../../../assets/img/icon8.png';
+  
+ 	
  export default {
   	data () {
       return {
+        iconM : MyImage,
+        inzoom : 15,
         center: {lat: 10.0, lng: 10.0},
         markers: [{
           position: {lat: 10.0, lng: 10.0}
@@ -65,16 +71,18 @@
                     console.log(inMarkers.data[0]);
                     this.center = inMarkers.data[0] ;
                     this.markers = inMarkers.data;
+                    this.inzoom = 17;
                 });
 
        },
        geolocation : function() {
+        console.log('geolocation being called ')
 	      navigator.geolocation.getCurrentPosition((position) => {
 	        this.center = {
 	          lat: position.coords.latitude,
 	          lng: position.coords.longitude
 	        };
-	        console.log('calling geolocation function ', center);
+	        console.log('calling geolocation function ', this.center);
 	      });
 	    }
 
@@ -85,15 +93,15 @@
 
 <style>
   .google-map {
-  width: 800px;
-  height: 600px;
-  margin: 0 auto;
-  background: gray;
+    width: 700px;
+    height: 400px;
+    margin: 0 auto;
+    background: gray;
   }
 
  .button {
     display: inline-block;
-    margin: 4px;
+    margin: -4px;
  }
 
 </style>

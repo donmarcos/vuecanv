@@ -16,3 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('mapvoters', 'web\MapController@index')->name('master');
+
+Route::get('cvadmin', 'web\CVAdminController@index')->name('cvadmin');
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('welcome');
+Route::get('/test', 'HomeController@test')->name('home');

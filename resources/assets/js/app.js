@@ -18,9 +18,11 @@ window.Vue = require('vue');
 
 import * as VueGoogleMaps from 'vue2-google-maps';
 import VuejsDialog from "vuejs-dialog";
+import VueRouter from 'vue-router';
+import router from './routes';
 
-Vue.use(VuejsDialog)
-
+Vue.use(VuejsDialog);
+Vue.use(VueRouter);
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -36,7 +38,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('googlecomponent', require('./components/GoogleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });
 
 //Vue.config.devtools = true;
